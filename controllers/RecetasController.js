@@ -1,13 +1,11 @@
-const {db} = require("../config/mysql");
+const {RecipeModel} = require("../models/RecipeModel")
+
 const getRecetas = async (req, res) => {
     try {
-        const sql = 'SELECT * FROM recetas'
-        db.query(sql, (err, result) => {
-            if (err) throw err;
-            res.json(result)
-        })
+        const data = await RecipeModel.findAll();
+        res.send({ data });
     } catch (e) {
-        console.log(e)
+        console.log(res, e);
     }
 }
 
