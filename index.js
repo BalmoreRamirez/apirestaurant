@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 
 const port = process.env.PORT || 3000;
 
-//db()
+db()
 
 app.use("/api/v1", require("./routes"));
 

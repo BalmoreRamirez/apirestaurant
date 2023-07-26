@@ -1,5 +1,5 @@
-const { sequelize } = require("../config/mysql");
-const { DataTypes } = require("sequelize");
+const {sequelize} = require("../config/mysql");
+const {DataTypes} = require("sequelize");
 const RecipeModel = sequelize.define(
     "recipes",
     {
@@ -21,6 +21,10 @@ const RecipeModel = sequelize.define(
         hierro: {
             type: DataTypes.FLOAT,
         },
+
+    },
+    {
+        timestamps: true,
     }
 );
-module.exports = RecipeModel;
+module.exports = {RecipeModel};
