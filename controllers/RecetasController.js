@@ -3,7 +3,7 @@ const {RecipeModel} = require("../models/RecipeModel.js")
 const getRecetas = async (req, res) => {
     try {
         const data = await RecipeModel.findAll();
-        res.send({ data });
+        res.send(data);
     } catch (e) {
         console.log(e);
     }
