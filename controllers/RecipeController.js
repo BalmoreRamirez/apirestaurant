@@ -1,6 +1,7 @@
+const { matchedData } = require("express-validator");
 const {RecipeModel} = require("../models/RecipeModel.js")
 
-const getRecetas = async (req, res) => {
+const getRecipes = async (req, res) => {
     try {
         const data = await RecipeModel.findAll();
         res.send(data);
@@ -8,8 +9,26 @@ const getRecetas = async (req, res) => {
         console.log(e);
     }
 }
+const getRecipe = async (req, res) => {
 
-module.exports = {getRecetas};
+}
+const postRecipe = async (req, res) => {
+    try {
+
+        console.log(req.body)
+        const data = await RecipeModel.create(req.body);
+        res.send({data})
+    } catch (e) {
+        console.log(e)
+    }
+}
+const putRecipes = async (req, res) => {
+
+}
+const deleteRecipes = async (req, res) => {
+}
+
+module.exports = {getRecipes,postRecipe};
 
 
 

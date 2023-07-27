@@ -3,6 +3,11 @@ const {DataTypes} = require("sequelize");
 const RecipeModel = sequelize.define(
     "recipes",
     {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
+        },
         nombre: {
             type: DataTypes.STRING,
         },
