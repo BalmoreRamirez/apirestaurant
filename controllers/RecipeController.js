@@ -1,4 +1,4 @@
-const { matchedData } = require("express-validator");
+const {matchedData} = require("express-validator");
 const {RecipeModel} = require("../models/RecipeModel.js")
 
 const getRecipes = async (req, res) => {
@@ -10,6 +10,19 @@ const getRecipes = async (req, res) => {
     }
 }
 const getRecipe = async (req, res) => {
+    const {id} = req.params;
+    try {
+        const data = await RecipeModel.findOne({
+            where: {
+                id,
+            }
+        });
+        res.send(data);
+    } catch (e) {
+        res.status(500).json({
+            message: e.message,
+        });
+    }
 
 }
 const postRecipe = async (req, res) => {
@@ -23,12 +36,45 @@ const postRecipe = async (req, res) => {
     }
 }
 const putRecipes = async (req, res) => {
+    const {id} = req.params;
+    try {
+        const {nombre, caloria, grasa, carbohidrato, proteina, hierro} = req.body;
+        const data = await RecipeModel.findByPk(id);
+        data.nombre = nombre;
+        data.caloria = caloria;
+        data.grasa = grasa;
+        data.carbohidrato = carbohidrato;
+        data.proteina = proteina;
+        data.hierro = hierro;
+        await data.save();
+        res.send(data);
+    } catch (e) {
+        res.status(500).json({
+            message: e.message,
+        });
+    }
 
 }
 const deleteRecipes = async (req, res) => {
+    const {id} = req.params;
+    try {
+        const data = await RecipeModel.destroy({
+            where: {
+                id: id
+            }
+        });
+        res.send({
+            status: 200,
+            message: "successfully deleted"
+        });
+    } catch (e) {
+        res.status(500).json({
+            message: e.message,
+        });
+    }
 }
 
-module.exports = {getRecipes,postRecipe};
+module.exports = {getRecipes, postRecipe, getRecipe, putRecipes, deleteRecipes};
 
 
 
