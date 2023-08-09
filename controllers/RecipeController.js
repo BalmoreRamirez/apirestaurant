@@ -9,6 +9,7 @@ const getRecipes = async (req, res) => {
         console.log(e);
     }
 }
+
 const getRecipe = async (req, res) => {
     const {id} = req.params;
     try {

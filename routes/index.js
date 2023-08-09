@@ -1,9 +1,7 @@
 const fs = require('fs')
 const express = require('express')
 const router = express.Router()
-
 const pathRouter = `${__dirname}`
-
 const removeExtension = (fileName) => {
     return fileName.split('.').shift()
 }
